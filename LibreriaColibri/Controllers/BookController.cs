@@ -2,7 +2,7 @@
 
 namespace LibreriaColibri.Controllers
 {
-    public class BookController1 : Controller
+    public class BookController : Controller
     {
         public IActionResult Index()
         {
