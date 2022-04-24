@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+        img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        }
+        .img-format {
+        height: 100px;
+        width: 100px;
+        display: block;
+        margin: auto;
+        }
+        .card-format{
+            width: calc(50%);
+            margin-left: 25%;
+        }
+        .text-right{
+            text-align: right;
+        }
+    </style>
+    <br>
+    <div class="container text-center">
+        <div class="content card card-format">
+            <div class="card-body">
+                <div class="img-format">
+                    <img src="/images/check-mark.png" alt="img-check">
+                </div>
+                <div><p></p></div>
+                <h5 class="card-text">Pedido Realizado con exito</h5>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="card card-format">
+            <div class="card-body py-5 px-4">
+                <h1 class="text-center">Detalles del pedido</h1>
+                <p class="card-text">No. de Pedido:</p>
+                <p class="card-text">Fecha de Pedido:</p>
+                <p class="card-text">Cliente:</p>
+                <br>
+                <p class="card-text">Dirección de envio</p>
+                <p class="card-text">#Aqui va la calle</p>
+                <p class="card-text">#Aqui va la colonia</p>
+                <p class="card-text">#Aqui va el municipio, estado y CP</p>
+                <br>
+                <hr>
+                <div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Cant</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                            </tr>
+                            <tr>
+                                <td>#Aqui</td>
+                                <td>#van los</td>
+                                <td>#datos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="text-right">
+                        <div>
+                            <p>Productos: $$$$$</p>
+                        </div>
+                        <div>
+                            <p>Envio: $$$$$</p>
+                            <hr>
+                        </div>
+                        <div>
+                            <p>Subtotal: $$$$$</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="text-center"></div>
+                    <h2 class="text-center">Total</h2>
+                    <p class="text-muted text-center">IVA incluido</p>
+                    <p></p>
+                    <h1 class="text-center">$$$$$</h1>
+                </div>
+            </div>
+        </div>
+    </div>
