@@ -1,0 +1,102 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container p-3">
+    <div class="row">
+      <form class="col-6">
+        <div class="card text-white bg-secondary mb-3">
+          <div class="card-header">
+            <p class=" display-6 text-center">Detalles de tarjeta</p>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <div class="mb-3">
+                <label for="card-number" class="form-label">Numero de tarjeta</label>
+                <input type="number" class="form-control" name="card-number" id="card-number" aria-describedby="helpId"
+                  placeholder="xxxx-xxxx-xxxx-xxxx">
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="" class="form-label">Fecha de expiracion</label>
+                    <div class="input-group mb-3">
+                      <input type="number" name="month" class="form-control" placeholder="MM">
+                      <span class="input-group-text">/</span>
+                      <input type="number" name="year" class="form-control" placeholder="YY">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="ccv-number" class="form-label">CVV</label>
+                    <input type="number" name="ccv-number" id="ccv-number" class="form-control" placeholder="xxx">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-success shadow">Relizar el pago</button>
+        </div>
+      </form>
+      <div class="col-6 card">
+        <div class="card-header">
+          <p class=" display-6 text-center">Detalles de la compra</p>
+        </div>
+        <div class="card-body">
+
+          <div class="pb-3">
+            <h5>Direccion de envio</h5>
+            <div class="lh-1">
+              <p>
+                C. Av. de las Rosas #256
+                <br> Col. Providencia 44550,
+                <br>Monterrey, Nuevo Leon, Mexico
+              </p>
+            </div>
+
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Cant.</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Harry Potter</td>
+                <td>$560.00</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>El señor de los anillos</td>
+                <td>$420.00</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>El diario de Anna Frank</td>
+                <td>$80.00</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>
+            <p class="display-4 text-center">Total</p>
+            <p class="display-6 text-center">$1060.00</p>
+          </div>
+
+          <div class="d-grid pt-3">
+            <a class="btn btn-danger" href="">Cancelar compra</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
