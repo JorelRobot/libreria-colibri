@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LibreriaColibri.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -28,6 +29,8 @@ namespace LibreriaColibri.Data
         public virtual DbSet<TPublishingHouse> TPublishingHouses { get; set; } = null!;
         public virtual DbSet<TShoppingCar> TShoppingCars { get; set; } = null!;
         public virtual DbSet<TStatus> TStatuses { get; set; } = null!;
+
+        public DbSet<Usuario> Usuario { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
