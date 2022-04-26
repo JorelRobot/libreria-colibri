@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LibreriaColibri.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap-quartz/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+   <!--     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibreriaColibri</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,7 +32,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <!--START NAVBAR-->
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -60,32 +63,32 @@
         </form>
 
 <!--boton sing up-->
-        <a class="btn btn-link nav-link" href="#">
+        <a class="btn btn-link nav-link text-light" href="#">
            Sign up
         </a>
  <!--fin boton sing up -->    
  
  <!--boton login-->
- <a class="btn btn-link nav-link" href="./login.html ">
+ <a class="btn btn-link nav-link text-light" href="./login.html ">
   <i class="fa-solid fa-user"></i>
      Login
 </a>
 <!--fin boton login -->     
 
 <!--carrito-->
-<a class="btn btn-link nav-link" href="./cart.html ">
+<a class="btn btn-link nav-link text-light" href="./cart.html ">
 <i class="fa-solid fa-cart-shopping"></i> </a>
 <!--fin carrito-->
 
 <!--boton Perfil-->
-<a class="btn btn-link nav-link" href="#">
+<a class="btn btn-link nav-link text-light" href="#">
     <i class="fa-solid fa-address-card"></i> 
         Mi Perfil
   </a>
   <!--fin boton Perfil -->  
   
       <!--boton sign out-->
-      <a class="btn btn-link nav-link" href="#">
+      <a class="btn btn-link nav-link text-light" href="#">
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
              sign out
         </a>
@@ -99,17 +102,20 @@
 
 
     </header>
-    <div class="container">
+    <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - LibreriaColibri - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> 
+     <script src="https://kit.fontawesome.com/58e8c39aa0.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
