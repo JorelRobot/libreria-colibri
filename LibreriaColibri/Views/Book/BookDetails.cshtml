@@ -3,6 +3,122 @@
 *@
 @{
 }
+
+<style>
+
+#ribbon{
+    background-color: #686dc3;
+    background-image:repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(131,21,21,0.5) 25px, rgba(131,21,21,0.5) 40px);
+}
+
+#robbon::after{
+    content:'';
+    background-color: transparent;
+    display:block;
+    height: 20px;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    left: auto;
+    margin-top: -40px;
+}
+
+#birthday{
+    background-color: #686dc3;
+    position: relative;
+    margin-top: -20px;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#birthday img{
+    position:relative;
+    margin-top: -30px;
+}
+
+.text-shadow{
+    text-shadow: 0 3px 3px rgba(0,0,0,0.6);
+}
+#separator-ribbon{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+
+}
+
+#separator-ribbon .content{
+    width: 150%;
+    height: 150px;
+    margin-left: -25%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+#libros{
+    background: #686dc3;
+    background-repeat: repeat-x;
+    background-size: 75%;
+    margin-top: -20px;
+}
+
+#separator-image{
+    background: #686dc3;
+    
+    background-repeat: repeat-x;
+    background-size: 75%;
+    margin-top: -20px;
+}
+
+#separator-a{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+#separator-a .content{
+    
+    width: 110%;
+    height: 100px;
+    margin-left: -5%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+#footer{
+    background: #e83283;
+    background-repeat: repeat-x;
+    background-size: 75%;
+    margin-top: -20px;
+}
+
+#games{
+    background: rgb(255,255,255);
+    background: url(../images/banderin.png);
+    background-repeat: repeat-x;
+    background-size: 75%;
+    margin-top: -20px;
+}   
+
+
+
+.intNumber{
+    width: 3rem;
+    /*font-style:italic para darle cursiva...;
+    font-family: 'Times New Roman', Times, serif;   tipo de letra*/
+
+}
+
+#libroDesc{
+    text-align: justify;
+}
+
+#libro img{
+    height:20%;
+    width: 20%;
+}
+
+</style>
+
+
 <!--Inicia detalles de libro-->
   <!--separador-->
     <div id="separator-ribbon">
