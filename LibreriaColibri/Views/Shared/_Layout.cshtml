@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LibreriaColibri.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap-quartz/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   
+
 </head>
 <body>
     <header>
@@ -36,59 +39,60 @@
                     <button class="btn btn-secondary my-4 my-sm-0" type="submit">Search</button>
                 </form>
 
-        <!--boton sing up-->
-                <a class="btn btn-link nav-link" asp-controller="Access" asp-action="SignUp">
-                   Sign up
-                </a>
-         <!--fin boton sing up -->    
+<!--boton sing up-->
+        <a class="btn btn-link nav-link text-light" href="#">
+           Sign up
+        </a>
+ <!--fin boton sing up -->    
  
-         <!--boton login-->
-                <a class="btn btn-link nav-link" asp-controller="Access" asp-action="Login">
-                  <i class="fa-solid fa-user"></i>
-                     Login
-                </a>
-        <!--fin boton login -->     
+ <!--boton login-->
+ <a class="btn btn-link nav-link text-light" href="./login.html ">
+  <i class="fa-solid fa-user"></i>
+     Login
+</a>
+<!--fin boton login -->     
 
-        <!--carrito-->
-                <a class="btn btn-link nav-link" asp-controller="Order" asp-action="Cart">
-                    <i class="fa-solid fa-cart-shopping"></i> 
-                    Cart
-                </a>
-        <!--fin carrito-->
+<!--carrito-->
+<a class="btn btn-link nav-link text-light" href="./cart.html ">
+<i class="fa-solid fa-cart-shopping"></i> </a>
+<!--fin carrito-->
 
-        <!--boton Perfil-->
-                <a class="btn btn-link nav-link" asp-controller="Account" asp-action="MyProfile">
-                    <i class="fa-solid fa-address-card"></i> 
-                    Mi Perfil
-                </a>
-          <!--fin boton Perfil -->  
+<!--boton Perfil-->
+<a class="btn btn-link nav-link text-light" href="#">
+    <i class="fa-solid fa-address-card"></i> 
+        Mi Perfil
+  </a>
+  <!--fin boton Perfil -->  
   
-              <!--boton sign out-->
-                <a class="btn btn-link nav-link" href="#">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    Sign out
-                </a>
-               <!--fin boton sign out -->    
-             </div>
-            </div>
-          </nav>
-        <!--END NAVBAR-->  
+      <!--boton sign out-->
+      <a class="btn btn-link nav-link" href="#">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+             sign out
+        </a>
+       <!--fin boton sign out -->    
+     </div>
+    </div>
+  </nav>
+<!--END NAVBAR-->  
 
 
 
 
     </header>
-    <div class="container">
+    <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - LibreriaColibri - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> 
+     <script src="https://kit.fontawesome.com/58e8c39aa0.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
