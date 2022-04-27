@@ -8,5 +8,10 @@ namespace LibreriaColibri.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult MyProfile()
+        {
+            return View();
+        }
     }
 }
