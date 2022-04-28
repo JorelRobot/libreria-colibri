@@ -1,0 +1,88 @@
+﻿@using LibreriaColibri.Models.ViewModels
+@model SignupViewModel
+@{
+}
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title text-center">Registro de usuario</h3>
+        <form asp-controller="Access" asp-action="Signup" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="row mt-4">
+                <div class="col-sm-6">
+
+                    <div class="mb-4">
+                        <label asp-for="Name" class="col-md-4"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Ingrese su nombre"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Phone" class="col-md-4"></label>
+                        <input asp-for="Phone" class="form-control" placeholder="Ingrese su numero de telefono"/>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Address" class="col-md-4"></label>
+                        <input asp-for="Address" class="form-control" placeholder="Ingrese su numero de direccion"/>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ZipCode" class="col-md-4"></label>
+                        <input asp-for="ZipCode" class="form-control" placeholder="Ingrese su codigo postal"/>
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="City" class="col-md-4"></label>
+                        <input asp-for="City" class="form-control" placeholder="Ingrese su cuidad"/>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Country" class="col-md-4"></label>
+                        <input asp-for="Country" class="form-control" placeholder="Ingrese su pais"/>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="mb-4">
+                        <label asp-for="Email" class="col-md-4"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Ingrese su correo"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="col-md-4"></label>
+                        <input asp-for="Password" class="form-control" placeholder="Ingrese su contraseña"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ConfrimPassword" class="col-md-4"></label>
+                        <input asp-for="ConfrimPassword" class="form-control" placeholder="Confirme su contraseña"/>
+                        <span asp-validation-for="ConfrimPassword" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 offset-2">
+                        <button type="submit" class="btn btn-success w-75 btn-lg">Registrarse</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
