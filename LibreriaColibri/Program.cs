@@ -1,7 +1,20 @@
+using LibreriaColibri.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configuracion a Base de datos
+builder.Services.AddDbContext<LibraryContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("Connection"));
+});
+
+//Agregar Identity al proyecto
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<LibraryContext>();
 
 var app = builder.Build();
 
@@ -17,6 +30,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//Agregar autotetecacion al proyecto
+app.UseAuthentication();
 
 app.UseAuthorization();
 

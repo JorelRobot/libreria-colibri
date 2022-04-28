@@ -10,6 +10,12 @@ namespace LibreriaColibri.Controllers
         }
 
         [HttpGet]
+        public IActionResult BookSearchResults()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult BookDetails()
         {
             return View();

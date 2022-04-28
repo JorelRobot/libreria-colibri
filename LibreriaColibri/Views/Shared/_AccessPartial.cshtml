@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> userManager
+
+@{
+}
+@if (signInManager.IsSignedIn(User))
+{
+    <!--carrito-->
+    <a class="btn btn-link nav-link text-light" asp-controller="Order" asp-action="Cart">
+        <i class="fa-solid fa-cart-shopping"></i> 
+    </a>
+    <!--fin carrito-->
+
+    <!--boton Perfil-->
+    <a class="btn btn-link nav-link text-light" href="#">
+        <i class="fa-solid fa-address-card"></i> 
+        Mi Perfil
+    </a>
+    <!--fin boton Perfil -->  
+  
+    <!--boton sign out-->
+    <a class="btn btn-link nav-link" asp-controller="Access" asp-action="Signout">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        Sign out
+    </a>
+    <!--fin boton sign out -->
+}
+else
+{
+    <!--boton sing up-->
+    <a class="btn btn-link nav-link text-light" asp-controller="Access" asp-action="Signup">
+        Sign up
+    </a>
+    <!--fin boton sing up -->    
+ 
+    <!--boton login-->
+    <a class="btn btn-link nav-link text-light" asp-controller="Access" asp-action="Login">
+        <i class="fa-solid fa-user"></i>
+        Login
+    </a>
+    <!--fin boton login -->
+}
+                   
+
+                  
