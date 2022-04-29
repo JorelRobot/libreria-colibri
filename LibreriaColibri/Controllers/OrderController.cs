@@ -8,6 +8,18 @@ namespace LibreriaColibri.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Cart() 
+        { 
+            return View(); 
+        }
+
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            return View();
+        }
+
 
         [HttpGet] IActionResult OrderDetails()
         {

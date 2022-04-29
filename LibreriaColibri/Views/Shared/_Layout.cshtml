@@ -14,93 +14,35 @@
 </head>
 <body>
     <header>
-   <!--     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibreriaColibri</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <!--START NAVBAR-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="d-inline-block align-text-top">
+                    <img src="../images/logo.png" width="75" alt="colibri">
+                </a>
+                <a class="navbar-brand text-secondary" asp-controller="Home" asp-action="Index">COLIBRÍ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+            <!--link home-->
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                
+                        <!--link about-->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                      <!--barra de y boton de busqueda-->
                     </ul>
+                    <form asp-controller="Book" asp-action="BookSearchResults" method="get" class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-4 my-sm-0" type="submit">Search</button>
+                    </form> 
+                    <partial name="_AccessPartial" />
                 </div>
             </div>
-        </nav> -->
-
-        <!--START NAVBAR-->
- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="d-inline-block align-text-top">
-        <img src="../images/logo.png" width="75" alt="colibri"></a>
-      <a class="navbar-brand text-secondary" href="./home.html">COLIBRÍ</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!--link home-->
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="./home.html">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <!--link about-->
-          <li class="nav-item">
-            <a class="nav-link" href="./about.html">About</a>
-          </li>
-          <!--barra de y boton de busqueda-->
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-secondary my-4 my-sm-0" type="submit">Search</button>
-        </form>
-
-<!--boton sing up-->
-        <a class="btn btn-link nav-link text-light" href="#">
-           Sign up
-        </a>
- <!--fin boton sing up -->    
- 
- <!--boton login-->
- <a class="btn btn-link nav-link text-light" href="./login.html ">
-  <i class="fa-solid fa-user"></i>
-     Login
-</a>
-<!--fin boton login -->     
-
-<!--carrito-->
-<a class="btn btn-link nav-link text-light" href="./cart.html ">
-<i class="fa-solid fa-cart-shopping"></i> </a>
-<!--fin carrito-->
-
-<!--boton Perfil-->
-<a class="btn btn-link nav-link text-light" href="#">
-    <i class="fa-solid fa-address-card"></i> 
-        Mi Perfil
-  </a>
-  <!--fin boton Perfil -->  
-  
-      <!--boton sign out-->
-      <a class="btn btn-link nav-link text-light" href="#">
-        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-             sign out
-        </a>
-       <!--fin boton sign out -->    
-     </div>
-    </div>
-  </nav>
-<!--END NAVBAR-->  
-
-
-
-
+        </nav>
+    <!--END NAVBAR-->  
     </header>
     <div class="">
         <main role="main" class="pb-3">
