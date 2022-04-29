@@ -141,8 +141,11 @@
             <p class="card-text text-shadow">Sub Total de Envío:</p>
             <p class="card-text text-warning text-shadow">Total: </p>
             
+            <form asp-controller="Order" asp-action="Payment" method="get">
+                
+              <button type="submit" class="btn btn-danger">Realizar pedido</button>
             
-              <button type="button" class="btn btn-danger ">Realizar pedido</button>
+            </form>
              
             
             <p class="card-text text-dark pt-2">IVA incluido en caso de ser aplicable </p>
