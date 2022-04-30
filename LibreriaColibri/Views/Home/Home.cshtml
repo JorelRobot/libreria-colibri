@@ -54,6 +54,20 @@
         </h3>
       </div>
       <div class="row">
+            @foreach(var book in @ViewBag.BooksMostSellers)
+            {
+                <div class="col-sm">
+                  <div class="card border-primary book mb-5">
+                    <img src="@book.Img" class="card-img-top" alt="...">
+                    <div class="card-body chtt">
+                      <h4 class="card-title">@book.Tittle</h4>
+                      <p class="text-warning">Precio: @book.Price</p>
+                      <a class="btn btn-link"  asp-controller="Book" asp-action="BookDetails"> Ver más </a>
+                    </div>
+                  </div>
+                </div>
+            }
+            @*
         <div class="col-sm">
           <div class="card border-primary book mb-5">
             <img src="~/sources/images/greg.jpg" class="card-img-top" alt="...">
@@ -112,7 +126,7 @@
             </div>
           </div>
         </div>
-
+*@
 
       </div>
   </div>

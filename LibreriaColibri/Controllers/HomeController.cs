@@ -20,8 +20,9 @@ namespace LibreriaColibri.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<GetBooksDto> books = _context.GetBooks.FromSqlRaw($"sp_BestSellers");
-            return View("Home");
+            IEnumerable<GetBooksDto> booksMostSellers = _context.GetBooks.FromSqlRaw($"sp_BestSellers");
+            ViewBag.BooksMostSellers = booksMostSellers;
+            return View("Home",booksMostSellers);
         }
 
         public IActionResult Privacy()
