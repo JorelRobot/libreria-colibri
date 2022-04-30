@@ -128,3 +128,12 @@ body {
     height: 20%;
     width: 20%;
 }
+
+.chtt {
+    min-height: 250px;
+    
+}
+.book img {
+   height:275px;
+   width:200px;
+}
