@@ -1,6 +1,7 @@
 ﻿using LibreriaColibri.Data;
 using LibreriaColibri.Models;
 using LibreriaColibri.Models.Dtos;
+using LibreriaColibri.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -20,9 +21,10 @@ namespace LibreriaColibri.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<GetBooksDto> booksMostSellers = _context.GetBooks.FromSqlRaw($"sp_BestSellers");
-            ViewBag.BooksMostSellers = booksMostSellers;
-            return View("Home",booksMostSellers);
+            HomeViewModel model = new HomeViewModel();
+            model.BooksMostBuyers = _context.GetBooks.FromSqlRaw($"sp_BestSellers");
+            model.BooksLastAdded = _context.GetBooks.FromSqlRaw($"sp_LastAdded");
+            return View("Home",model);
         }
 
         public IActionResult Privacy()
