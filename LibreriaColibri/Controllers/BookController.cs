@@ -1,4 +1,5 @@
 ﻿using LibreriaColibri.Data;
+using LibreriaColibri.Models.Dtos;
 using LibreriaColibri.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,9 +36,19 @@ namespace LibreriaColibri.Controllers
         }
 
         [HttpGet]
-        public IActionResult BookDetails()
+        public IActionResult BookDetails(int id)
         {
-            return View();
+            IEnumerable<GetBookDetailsDto> getBookDetails = _context.GetBookDetails.FromSqlRaw($"sp_SelectBookById {id}").ToList();
+            GetBookDetailsDto model;
+            if(getBookDetails == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                model = getBookDetails.First();
+            }
+            return View(model);
         }
     }
 }

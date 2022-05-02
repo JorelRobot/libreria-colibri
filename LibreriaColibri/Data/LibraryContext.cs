@@ -35,6 +35,7 @@ namespace LibreriaColibri.Data
 
         //Dto's
         public DbSet<GetBooksDto> GetBooks { get; set; } = null!;
+        public DbSet<GetBookDetailsDto> GetBookDetails { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -249,6 +250,11 @@ namespace LibreriaColibri.Data
             });
 
             modelBuilder.Entity<GetBooksDto>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            modelBuilder.Entity<GetBookDetailsDto>(entity =>
             {
                 entity.HasNoKey();
             });
