@@ -1,5 +1,9 @@
-﻿using LibreriaColibri.Models;
+﻿using LibreriaColibri.Data;
+using LibreriaColibri.Models;
+using LibreriaColibri.Models.Dtos;
+using LibreriaColibri.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace LibreriaColibri.Controllers
@@ -7,15 +11,20 @@ namespace LibreriaColibri.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly LibraryContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, LibraryContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View("Home");
+            HomeViewModel model = new HomeViewModel();
+            model.BooksMostBuyers = _context.GetBooks.FromSqlRaw($"sp_BestSellers");
+            model.BooksLastAdded = _context.GetBooks.FromSqlRaw($"sp_LastAdded");
+            return View("Home",model);
         }
 
         public IActionResult Privacy()

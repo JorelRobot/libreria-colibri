@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using LibreriaColibri.Models;
+using LibreriaColibri.Models.Dtos;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -31,6 +32,10 @@ namespace LibreriaColibri.Data
         public virtual DbSet<TStatus> TStatuses { get; set; } = null!;
 
         public DbSet<Usuario> Usuario { get; set; } = null!;
+
+        //Dto's
+        public DbSet<GetBooksDto> GetBooks { get; set; } = null!;
+        public DbSet<GetBookDetailsDto> GetBookDetails { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -243,6 +248,17 @@ namespace LibreriaColibri.Data
                     .IsUnicode(false)
                     .HasColumnName("statusName");
             });
+
+            modelBuilder.Entity<GetBooksDto>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            modelBuilder.Entity<GetBookDetailsDto>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
 
             base.OnModelCreating(modelBuilder);
 

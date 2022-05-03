@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using LibreriaColibri.Models.ViewModels
+@model HomeViewModel
 @{
     ViewData["Title"] = "Home";
 }
@@ -54,65 +53,20 @@
         </h3>
       </div>
       <div class="row">
-        <div class="col-sm">
-          <div class="card border-primary book mb-5">
-            <img src="~/sources/images/greg.jpg" class="card-img-top align-self-center mt-2" alt="...">
-            <div class="card-body chtt">
-              <h4 class="card-title">El Diario de Greg 8</h4>
-              <p class="text-warning">Precio: $149</p>
-              <a class="btn btn-link"  asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="card border-primary  book mb-5">
-            <img src="~/sources/images/compas.jpg" class="card-img-top align-self-center mt-2" alt="...">
-            <div class="card-body chtt">
-              <h4 class="card-title ">Los Compas Perdidos en el Espacio</h4>
-              <p class="card-text">
-                
-                <p class="text-warning"> Precio: $268</p>
-                <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-sm">
-          <div class="card border-primary  book mb-5">
-            <img src="~/sources/images/orgullo.jpg" class="card-img-top align-self-center mt-2" alt="...">
-            <div class="card-body chtt">
-              <h4 class="card-title">Orgullo y prejuicio</h4>
-              
-              <p class="text-warning"> Precio: $339</p>
-              <a class="btn btn-link"asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm">
-          <div class="card border-primary  book mb-5">
-            <img src="~/sources/images/sat.jpg" class="card-img-top align-self-center mt-2" alt="...">
-            <div class="card-body chtt">
-              <h4 class="card-title">WTF con el SAT</h4>
-              
-              <p class="text-warning">Precio: $269</p>
-              <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm">
-          <div class="card border-primary book mb-5">
-            <img src="~/sources/images/vic.jpg" class="card-img-top align-self-center mt-2" alt="...">
-            <div class="card-body chtt">
-              <h4 class="card-title ">VICNIX Perdidos en el Mar</h4>
-              
-              <P class="text-warning">Precio: $169</P>
-              <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-            </div>
-          </div>
-        </div>
-
+            @foreach(var book in Model.BooksMostBuyers)
+            {
+                <div class="col-sm">
+                  <div class="card border-primary book mb-5">
+                    <img src="@book.Img" class="card-img-top align-self-center mt-2" alt="...">
+                    <div class="card-body chtt">
+                      <h4 class="card-title">@book.Tittle</h4>
+                      <p class="text-warning">Precio: @book.Price</p>
+                      <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails" asp-route-id="@book.Id"> Ver más </a>
+                    </div>
+                  </div>
+                </div>
+            }
 
       </div>
   </div>
@@ -131,62 +85,20 @@
     </h3>
   </div>
   <div class="row">
-    <div class="col-sm">
-      <div class="card border-primary book mb-5">
-        <img src="~/sources/images/alas.jpg" class="card-img-top align-self-center mt-2" alt="...">
-        <div class="card-body chtt">
-          <h4 class="card-title">
-            Las Alas De Sophie</h4>
-          <p class="text-warning">Precio: $268</p>
-          <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="card border-primary book mb-5">
-        <img src="~/sources/images/confesiones.jpg" class="card-img-top align-self-center mt-2" alt="...">
-        <div class="card-body chtt">
-          <h class="card-title">Confesiones De Una Chica Invisible</h4>
-            <p class="text-warning"> Precio: $348</p>
-            <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-sm">
-      <div class="card border-primary book mb-5">
-        <img src="~/sources/images/peligro.jpg" class="card-img-top align-self-center mt-2" alt="...">
-        <div class="card-body chtt">
-          <h4 class="card-title">Peligro Profundo</h4>
-          <p class="text-warning"> Precio: $298</p>
-          <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card border-primary book mb-5">
-        <img src="~/sources/images/fuego.jpg" class="card-img-top align-self-center mt-2" alt="...">
-        <div class="card-body chtt">
-          <h4 class="card-title">
-            La Niña De Fuego</h4>
-          <p class="text-warning">Precio: $299</p>
-          <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card border-primary book mb-5">
-        <img src="~/sources/images/perdidos.jpg" class="card-img-top align-self-center mt-2" alt="...">
-        <div class="card-body chtt ">
-          <h4 class="card-title">Perdidos en Nunca Jamás</h4>
-           <P class="text-warning">Precio: $349</P>
-           <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails"> Ver más </a>
-        </div>
-      </div>
-    </div>
-
+      @foreach(var book in Model.BooksLastAdded)
+            {
+                <div class="col-sm">
+                  <div class="card border-primary book mb-5">
+                    <img src="@book.Img" class="card-img-top align-self-center mt-2" alt="...">
+                    <div class="card-body chtt">
+                      <h4 class="card-title">@book.Tittle</h4>
+                      <p class="text-warning">Precio: @book.Price</p>
+                      <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails" asp-route-id="@book.Id"> Ver más </a>
+                    </div>
+                  </div>
+                </div>
+            }
 
   </div>
 </div>
