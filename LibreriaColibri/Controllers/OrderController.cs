@@ -32,6 +32,5 @@ namespace LibreriaColibri.Controllers
         {
             return View();
         }
-
     }
 }

@@ -6,7 +6,7 @@
 
 <div class="container p-3">
     <div class="row">
-      <form class="col-6">
+      <form class="col-6" asp-controller="Order" asp-action="OrderDetails" method="get">
         <div class="card text-white bg-secondary mb-3">
           <div class="card-header">
             <p class=" display-6 text-center">Detalles de tarjeta</p>
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="d-grid">
-          <button class="btn btn-success shadow">Relizar el pago</button>
+          <button type="submit" class="btn btn-success shadow">Realizar el pago</button>
         </div>
       </form>
       <div class="col-6 card">
