@@ -77,7 +77,7 @@ namespace LibreriaColibri.Data
 
                 entity.Property(e => e.Stock).HasColumnName("stock");
 
-                entity.Property(e => e.Tittle)
+                entity.Property(e => e.Title)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("tittle");
