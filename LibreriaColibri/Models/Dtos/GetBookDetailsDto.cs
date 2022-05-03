@@ -9,7 +9,6 @@
         public int Stock { get; set; }
         public int Depot { get; set; }
         public string? Img { get; set; }
-
         public string Author { get; set; }
 
     }

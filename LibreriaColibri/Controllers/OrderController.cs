@@ -32,17 +32,5 @@ namespace LibreriaColibri.Controllers
         {
             return View();
         }
-
-
-        [HttpGet] IActionResult OrderDetails()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        IActionResult OrderError()
-        {
-            return View();
-        }
     }
 }
