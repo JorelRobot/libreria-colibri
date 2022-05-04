@@ -8,6 +8,12 @@
     <h3 class="card-title text-center">Registro de usuario</h3>
     <form class="container mt-3" asp-controller="Access" asp-action="Signup" method="post">
         <div class="text-danger" asp-validation-summary="All"></div>
+
+        @if (Html.ValidationSummary() != null)
+        {
+            <h1>HAY VALIDACION</h1>
+        }
+        
         <div class="row mt-3">
             <div class="col-sm-6">
 
