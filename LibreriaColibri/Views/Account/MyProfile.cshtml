@@ -1,8 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using LibreriaColibri.Models.ViewModels
+@model ProfileViewModel
 
 <div class="container text-center mt-3 mb-3">
     <div class="content card">
@@ -18,41 +15,51 @@
                 </div>
             </div>
             <div class="col col-7">
-                <div class="p-3">
-                    <form action="">
+                <div class="row p-3">
+                    <form asp-action="MyProfile" method="post">
                         <div>
-                            <h3 class="fw-light">Datos Personales</h3>
-                            <input type="text" class="form-control col-10" placeholder="Nombre">
+                            <h3 class="card-text">Datos Personales</h3>
+
+                            <input type="hidden" asp-for="Id"/>
+
+                            <label asp-for="Name"></label>
+                            <input type="text" class="form-control card col-10" placeholder="Nombre" asp-for="Name">
                             <br>
                         </div>
                         <div>
-                            <input type="email" class="form-control col-10" placeholder="Correo" readonly="">
+                            <label asp-for="Email"></label>
+                            <input type="email" class="form-control col-10" placeholder="Correo" disabled asp-for="Email">
                             <br>
                         </div>
                         <div>
-                            <input type="text" class="form-control col-10" placeholder="Telefono">
+                            <label asp-for="Phone"></label>
+                            <input type="text" class="form-control card col-10" placeholder="Telefono" asp-for="Phone">
                             <hr>
                         </div>
                         <div>
-                            <h3 class="fw-light">Direccion de envio</h3>
-                            <input type="text" class="form-control col-10" placeholder="Direccion">
+                            <h3 class="card-text">Direccion de envio</h3>
+                            <label asp-for="Address"></label>
+                            <input type="text" class="form-control card col-10" placeholder="Direccion" asp-for="Address">
                             <br>
                         </div>
                         <div>
-                            <input type="text" class="form-control col-2" placeholder="C.P.">
+                            <label asp-for="ZipCode"></label>
+                            <input type="text" class="form-control card col-2" placeholder="C.P." asp-for="ZipCode">
                             <br>
                         </div>
                         <div>
-                            <input type="text" class="form-control col-10" placeholder="Ciudad">
+                            <label asp-for="City"></label>
+                            <input type="text" class="form-control card col-10" placeholder="Ciudad" asp-for=City>
                             <br>
                         </div>
                         <div>
-                            <input type="text" class="form-control col-10" placeholder="Pais">
+                            <label asp-for="Name"></label>
+                            <input type="text" class="form-control card col-10" placeholder="Pais" asp-for=Country>
                             <br>
                         </div>
-                        <div class="row">
-                            <button type="button" class="btn btn-success mr-2 mt-1">Guardar cambios</button>
-                            <button type="button" class="btn btn-danger ml-2 mt-1">Cancelar</button>
+                        <div>
+                            <button type="submit" class="btn btn-info mr-2 mt-1">Guardar Cambios</button>
+                            <button type="button" class="btn btn-info ml-2 mt-1">Cancelar</button>
                         </div>
                     </form>
                 </div>
