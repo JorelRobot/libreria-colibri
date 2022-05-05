@@ -4,7 +4,15 @@
 }
 
 <div class="container px-4">   
+    @if(Html.ViewData.ModelState.ErrorCount >0)
+        {
+           <div class="alert alert-dismissible alert-warning" asp-validation-summary="ModelOnly" >
+           <h4 class="alert-heading text-warning">Warning!</h4>
+           <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
 <div class="card mb-3 mt-3">
+
     <div class="row g-0">
         <div class="col-md-8">
           <img src="~/sources/images/libros.png" class="img-fluid rounded-start" alt="pila de libros">
@@ -14,7 +22,10 @@
 
                 <!--FORM  -->
                 <form class="card-text" asp-controller="Access" asp-action="Login" method="post">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                   <!-- <div asp-validation-summary="All" class="text-danger"></div>-->
+                    
+       
+
                     <div class="mb-4">
                         <label asp-for="Email" class="form-label"></label>
                         <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
