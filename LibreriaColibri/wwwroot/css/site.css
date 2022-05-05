@@ -120,7 +120,7 @@ body {
     font-family: 'Times New Roman', Times, serif;   tipo de letra*/
 }
 
-#libroDesc {
+.libroDesc {
     text-align: justify;
 }
 
