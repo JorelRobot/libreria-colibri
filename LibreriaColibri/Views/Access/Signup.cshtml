@@ -6,8 +6,15 @@
 <div class="card-body">
     <h3 class="card-title text-center">Registro de usuario</h3>
     <form class="container mt-3" asp-controller="Access" asp-action="Signup" method="post">
-        <div class="text-danger" asp-validation-summary="All"></div>
-
+      
+       @if(Html.ViewData.ModelState.ErrorCount >0)
+        {
+           <div class="alert alert-dismissible alert-warning" asp-validation-summary="ModelOnly" >
+           <h4 class="alert-heading text-warning">Warning!</h4>
+           <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+       
         <div class="row mt-3">
             <div class="col-sm-6">
 
@@ -125,6 +132,7 @@
 @section Scripts{
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
+ 
 }
 }
 
