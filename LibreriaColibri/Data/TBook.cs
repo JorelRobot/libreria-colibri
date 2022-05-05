@@ -13,6 +13,7 @@ namespace LibreriaColibri.Data
         public int Depot { get; set; }
         public string? Img { get; set; }
         public int Sold { get; set; }
+        public string? Description { get; set; }
 
         public virtual TPublishingHouse IdPhNavigation { get; set; } = null!;
     }
