@@ -10,99 +10,93 @@
 <!--Titulo vista-->
 <div class="row pt-2">
     <h3 class="text-center pb-2 pt-2 h1 text-shadow">
-      TU CARRITO DE COMPRA
+        TU CARRITO DE COMPRA
     </h3>
-  </div>
+</div>
 
 
 <!--Tabla de compras-->
 <div class="container pt-2">
-  <div class="row">
-      <div class="col-sm-8">
+    <div class="row">
+        <div class="col-sm-8">
 
-        <!--Inicia tabla de contenido-->
-        <table class="table table-responsive">
-          <thead>
-            <tr class="table-warning align-middle text-shadow">
-              <th scope="col">Producto</th>
-              <th scope="col">Titulo</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
+            <!--Inicia tabla de contenido-->
+            <table class="table table-responsive">
+                <thead>
+                    <tr class="table-warning align-middle text-shadow">
+                        <th scope="col">Producto</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-2">
+                            <img src="~/sources/images/compas.jpg" class="w-50" alt="...">
+                        </td>
+                        <td class="col-4"> titulo del libro</td>
+                        <td class="text-warning align-middle col-2 ">$PRECIO X UNIDAD</td>
+                        <td class="col-2"><input type="number" class="intNumber card"></td>
+                        <td class="col-2">Total</td>
+                    </tr>
 
-            
-            <tr>
-              <td class="col-2">
-                <img src="~/sources/images/compas.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td class="col-4"> titulo del libro</td>
-              <td class="text-warning align-middle col-2 ">$PRECIO X UNIDAD</td>
-              <td class="col-2"><input type="number" class="intNumber card"></td>
-              <td class="col-2">Total</td>
-            </tr>
-
-            <tr>
-              <td scope="row">
-                <img src="~/sources/images/confesiones.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
+                    <tr>
+                        <td scope="row">
+                            <img src="~/sources/images/confesiones.jpg" class="w-50" alt="...">
+                        </td>
+                        <td> titulo del libro</td>
+                        <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
+                        <td><input type="number" class="intNumber card card "></td>
+                        <td>Total</td>
+                    </tr>
 
 
-            <tr >
-              <td scope="row">
-                <img src="~/sources/images/greg.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
-            
-            <tr>
-              <td scope="row">
-                <img src="~/sources/images/perdidos.jpg" class="w-50"  alt="..."> </td>
-                <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
-          </tbody>
-        </table>
+                    <tr>
+                        <td scope="row">
+                            <img src="~/sources/images/greg.jpg" class="w-50" alt="...">
+                        </td>
+                        <td> titulo del libro</td>
+                        <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
+                        <td><input type="number" class="intNumber card card "></td>
+                        <td>Total</td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">
+                            <img src="~/sources/images/perdidos.jpg" class="w-50" alt="...">
+                        </td>
+                        <td> titulo del libro</td>
+                        <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
+                        <td><input type="number" class="intNumber card card "></td>
+                        <td>Total</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-      <!--fin de tabla-->
+        <!--fin de tabla-->
+        <!--card total de orden-->
+        <div class=" col-sm-4">
 
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header text-center text-shadow">Total de tu Orden</div>
+                <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text text-shadow">Sub Total:</p>
+                    <p class="card-text text-shadow">Sub Total de Envío:</p>
+                    <p class="card-text text-warning text-shadow">Total: </p>
 
-      <!--card total de orden-->
-    <div class=" col-sm-4">
+                    <form class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
 
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
-          <div class="card-header text-center text-shadow">Total de tu Orden</div>
-          <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto" alt="...">
-          <div class="card-body">
-            <h4 class="card-title"></h4>
-            <p class="card-text text-shadow">Sub Total:</p>
-            <p class="card-text text-shadow">Sub Total de Envío:</p>
-            <p class="card-text text-warning text-shadow">Total: </p>
-            
-            <form  class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
-                
-                    <button class="btn btn-danger ">Realizar pedido</button>
-               
-              
-            
-            </form>
-          </div>
+                        <button class="btn btn-danger ">Realizar pedido</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      <!--fin de card-->
-  </div>
+        <!--fin de card-->
+    </div>
 </div>
 
 
