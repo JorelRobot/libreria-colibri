@@ -5,6 +5,8 @@ namespace LibreriaColibri.Models.ViewModels
     public class ProfileViewModel
     {
         [Required]
+        public string Id { get; set; }
+        [Required]
         public string Name { get; set; }
         [Required]
         public string Email { get; set; }
