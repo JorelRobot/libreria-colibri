@@ -37,13 +37,13 @@
                 }
 
     <script>
-        let cart = [];
+        
         function AddToCart(id, title, img, price, cant){
+            let cart = [];
             let product = {Id: id, Title: title, Img: img, Price:price, Cant:cant };
 
             if(JSON.parse(localStorage.getItem('carrito')) === null){
-                cart.push(product);
-                localStorage.setItem('carrito',JSON.stringify(cart));
+                cart.push(product);    
             }else{
                 cart = JSON.parse(localStorage.getItem('carrito'));
                 
@@ -53,18 +53,15 @@
                     console.log("existe");
                     cart.map(data => {
                     if(data.Id == product.Id){
-                        
+                        data.Cant += product.Cant
                     }
                     })
                 }
                 else{
                     cart.push(product);
                 }
-                
-                
-                localStorage.setItem('carrito',JSON.stringify(cart));
             }
-           
+           localStorage.setItem('carrito',JSON.stringify(cart));
         }
     </script>
 
