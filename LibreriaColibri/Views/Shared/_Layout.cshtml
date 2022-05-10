@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/LibreriaColibri.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap-quartz/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-   
+    <link rel="icon" href="~/sources/images/logo.png">
 
 </head>
 <body>
@@ -24,40 +24,42 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            <!--link home-->
+                <!--link home-->
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
-                
+
                         <!--link about-->
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                      <!--barra de y boton de busqueda-->
+                        <!--barra de y boton de busqueda-->
                     </ul>
                     <form asp-controller="Book" asp-action="BookSearchResults" method="get" class="d-flex">
                         <input class="form-control me-sm-2" type="text" placeholder="Search" name="search">
                         <button class="btn btn-secondary my-4 my-sm-0" type="submit">Search</button>
-                    </form> 
+                    </form>
                     <partial name="_AccessPartial" />
                 </div>
             </div>
         </nav>
-    <!--END NAVBAR-->  
+        <!--END NAVBAR-->
     </header>
-    <div class="">
+    <div class="mb-3">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="border-top footer text-muted mt-5">
         <div class="container">
             &copy; 2022 - LibreriaColibri - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer> 
-     <script src="https://kit.fontawesome.com/58e8c39aa0.js" crossorigin="anonymous"></script>
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/58e8c39aa0.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
