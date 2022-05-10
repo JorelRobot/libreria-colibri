@@ -1,4 +1,5 @@
 ﻿@using LibreriaColibri.Models.Dtos
+@using System.Text.Json
 @model GetBookDetailsDto
 @{
 }
@@ -48,7 +49,7 @@
                             <p class="text-shadow">Cantidad: </p>
                             <input type="number" class="intNumber card card">
                         </div>
-                        <button type="button" class="btn btn-danger text-center">Agregar al carrito</button>
+                        <button type="button" onclick="AddToCart(@GetToJson(@Model))" class="btn btn-danger text-center">Agregar al carrito</button>
                     }
                     else
                     {
@@ -62,3 +63,18 @@
 
     </div>
 <!--fin detalles-->
+
+
+    <script>
+        function AddToCart(testObject){
+            localStorage.setItem('testObject', JSON.stringify(testObject));
+        }
+    </script>
+
+
+@{
+    String GetToJson(GetBookDetailsDto model)
+    {
+        return JsonSerializer.Serialize(model);
+    }
+}
