@@ -1,6 +1,5 @@
 ﻿@using LibreriaColibri.Models.Dtos
 @using LibreriaColibri.Models.ViewModels
-@using System.Text.Json
 @model SearchViewModel
 @{
     ViewData["Title"] = "Book Search Results";
@@ -46,16 +45,24 @@
                 cart.push(product);
                 localStorage.setItem('carrito',JSON.stringify(cart));
             }else{
-                 cart = JSON.parse(localStorage.getItem('carrito'));
-                cart.map(data => {
-                    if(product.Id == data.Id){
-                        data.Id += product.cant;
+                cart = JSON.parse(localStorage.getItem('carrito'));
+                
+                considencia = cart.find(item => item.Id == product.Id);
+                
+                if(considencia){
+                    console.log("existe");
+                    cart.map(data => {
+                    if(data.Id == product.Id){
+                        
                     }
-                    else{
-                       // cart.push(product)
-                    }
-                })
-                //localStorage.setItem('carrito',JSON.stringify(cart));
+                    })
+                }
+                else{
+                    cart.push(product);
+                }
+                
+                
+                localStorage.setItem('carrito',JSON.stringify(cart));
             }
            
         }
