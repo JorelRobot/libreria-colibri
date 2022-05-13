@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibreriaColibri.Models.ViewModels
 {
@@ -27,7 +28,9 @@ namespace LibreriaColibri.Models.ViewModels
         public string Country { get; set; }
 
 
-        
-
+        //para seleccion de roles del admin
+        [Display(Name ="Seleccionar Rol")]
+        public IEnumerable<SelectListItem>? RolesList { get; set; }
+        public string SelectedRol { get; set; }
     }
 }
