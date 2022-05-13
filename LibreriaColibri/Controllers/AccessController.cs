@@ -1,7 +1,10 @@
-﻿using LibreriaColibri.Models;
+﻿using LibreriaColibri.Data;
+using LibreriaColibri.Models;
 using LibreriaColibri.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibreriaColibri.Controllers
 {
@@ -9,10 +12,20 @@ namespace LibreriaColibri.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public AccessController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        //yo le movi
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly LibraryContext _context;
+        //yo le movi
+
+        //puse en el constructor lo de arriba
+        public AccessController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, LibraryContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            //hola soy yo
+            _roleManager = roleManager;
+            _context = context;
+            //mejor no
         }
         public IActionResult Index()
         {
@@ -37,6 +50,10 @@ namespace LibreriaColibri.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //meti mi mano en el codigo tiemblen
+                    //asignar usuario a un rol por defecto cliente
+                    await _userManager.AddToRoleAsync(user, "Cliente");
+                    //si tu lo deseas puedes volar
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -85,5 +102,97 @@ namespace LibreriaColibri.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Access");
         }
+
+
+
+        //////////////////////
+        //registro especial del administrador
+        
+        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        public IActionResult SignupAdmin()
+        {
+            //para seleccionar rol
+            List<SelectListItem> RolesList=new List<SelectListItem>();
+            var roles = _context.Roles;
+            foreach (var rol in roles)
+            {
+                RolesList.Add(new SelectListItem()
+                {
+                    Value = rol.Name,
+                    Text = rol.Name
+                });
+            }
+            SignupViewModel model = new SignupViewModel()
+            {
+                RolesList = RolesList
+            };
+            //para seleccionar rol
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> SignupAdmin(SignupViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new Usuario
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name,
+                    PhoneNumber = model.Phone,
+                    Address = model.Address,
+                    ZipCode = model.ZipCode,
+                    City = model.City,
+                    Country = model.Country
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    //meti mi mano en el codigo tiemblen
+                    //asignar usuario a un rol
+                    if (model.SelectedRol != null && model.SelectedRol.Length > 0 && model.SelectedRol == "Administrador")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrador"); 
+                    }
+                    else if (model.SelectedRol != null && model.SelectedRol.Length > 0 && model.SelectedRol == "Empleado")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Empleado");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Cliente");
+                    }
+                    //si tu lo deseas puedes volar
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
+                }
+                ValidateErrors(result);
+            }
+
+
+            //para seleccionar rol
+            List<SelectListItem> RolesList = new List<SelectListItem>();
+            var roles = _context.Roles;
+            foreach (var rol in roles)
+            {
+                RolesList.Add(new SelectListItem()
+                {
+                    Value = rol.Name,
+                    Text = rol.Name
+                });
+            }
+            //para seleccionar rol
+
+            model.RolesList= RolesList;
+
+
+            return View(model);
+        }
+
+
     }
 }

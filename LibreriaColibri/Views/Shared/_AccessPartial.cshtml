@@ -25,6 +25,14 @@
         Sign out
     </a>
     <!--fin boton sign out -->
+
+    <!--SOLO SI ERES ADMIN PODRAS VER ESTO-->
+    @if (User.IsInRole("Administrador"))
+    {
+        <a class="btn btn-link nav-link" asp-controller="Access" asp-action="SignupAdmin">Nuevo Epm.</a>
+        <a class="btn btn-link nav-link" asp-controller="Roles" asp-action="Index">Roles</a>
+    <!--fin boton roles-->
+    }
 }
 else
 {
