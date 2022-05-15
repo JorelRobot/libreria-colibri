@@ -43,9 +43,9 @@
                 <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto mt-4" alt="...">
                 <div class="card-body">
                     <h4 class="card-title"></h4>
-                    <p class="card-text text-shadow">Sub Total:</p>
-                    <p class="card-text text-shadow">Sub Total de Envío:</p>
-                    <p class="card-text text-warning text-shadow">Total: </p>
+                    <p class="card-text text-shadow">Sub Total: <span id="subtotal"></span></p>
+                    <p class="card-text text-shadow">Sub Total de Envío: <span id="totalenvio"></span></p>
+                    <p class="card-text text-warning text-shadow">Total: <span id="total"></span></p>
 
                     <form class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
                         <button class="btn btn-danger ">Realizar pedido</button>
@@ -61,6 +61,11 @@
 
 
 <script>
+
+    /**
+     * Esta funcion renderiza los objetos del carrito guardados
+     * en el LocalStorage
+     */
     window.onload = function () {
         let cart = JSON.parse(localStorage.getItem('carrito'));
         let table = document.getElementById('table-body');
@@ -94,8 +99,17 @@
             `;
         }
 
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
+
     }
 
+    /**
+     * Este funcion se ejecuta cuando se decrementa la cantidad de los 
+     * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
+     * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
+     * los valores en la vista)
+     */
     function decrementBook(rowNumber){
 
         let cart = JSON.parse(localStorage.getItem('carrito'));
@@ -108,8 +122,17 @@
 
         document.getElementById('cantidad' + rowNumber).value = cartItem['Cant'];
         document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
     }
 
+    /**
+     * Este funcion se ejecuta cuando se incrementa la cantidad de los 
+     * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
+     * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
+     * los valores en la vista)
+     */
     function incrementBook(rowNumber){
 
         let cart = JSON.parse(localStorage.getItem('carrito'));
@@ -120,6 +143,9 @@
 
         document.getElementById('cantidad' + rowNumber).value = cartItem['Cant'];
         document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
     }
 
     function deleteCartRow(rowNumber) {
@@ -130,6 +156,12 @@
         cartRow.remove();
     }
 
+    /**
+     * Esta funcion permite al usuario digitar un numero en el campo
+     * de la cantidad de ejemplares que se desea comprar y actyaliza 
+     * los valores en LocalStorage y en la vista. Esta a su vez, 
+     * valida que los valores en ese campo no sean valores negativos.
+     */
     function numberChanged(rowNumber) {
         let cantidad = document.getElementById('cantidad' + rowNumber);
 
@@ -145,6 +177,35 @@
         localStorage.setItem('carrito', JSON.stringify(cart));
 
         document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+        
+        updateTotalPrices(cart);
+    }
+
+    /**
+     * Esta funcion se encarga de actualizar los valores en la vista
+     * del Subtotal, Total de envio, y el Total que es considerada como
+     * la suma de los dos valores anteriores.
+     */
+    function updateTotalPrices(jsoncart){
+
+        let html_subtotal = document.getElementById('subtotal');
+        let html_totalenvio = document.getElementById('totalenvio');
+        let html_total = document.getElementById('total');
+
+        let subtotal = 0;
+        let totalenvio = 120;
+        let total = 0;
+
+        for (let i in jsoncart) {
+            subtotal += jsoncart[i]['Cant'] * jsoncart[i]['Price'];
+        }
+
+        if (subtotal == 0) totalenvio = 0;
+        total = subtotal + totalenvio;
+
+        html_subtotal.innerHTML = '$' + subtotal;
+        html_totalenvio.innerHTML = '$' + totalenvio;
+        html_total.innerHTML = '$' + total;
     }
 
 </script>
