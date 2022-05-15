@@ -39,13 +39,13 @@
         <div class="col-xl-3 col-lg-12">
 
             <div class="card border-secondary mb-3 col-sm-6 col-xl-12">
-                <div class="card-header text-center text-shadow">Total de tu Orden</div>
+                <div class="card-header text-center text-shadow fs-4 fw-light">Total de tu Orden</div>
                 <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto mt-4" alt="...">
                 <div class="card-body">
                     <h4 class="card-title"></h4>
-                    <p class="card-text text-shadow">Sub Total: <span id="subtotal"></span></p>
-                    <p class="card-text text-shadow">Sub Total de Envío: <span id="totalenvio"></span></p>
-                    <p class="card-text text-warning text-shadow">Total: <span id="total"></span></p>
+                    <p class="card-text fs-5 fw-light text-shadow">Sub Total: <span id="subtotal"></span></p>
+                    <p class="card-text fs-5 fw-light text-shadow">Costo de Envío: <span id="totalenvio"></span></p>
+                    <p class="card-text fs-2 text-warning text-shadow">Total: <span id="total"></span></p>
 
                     <form class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
                         <button class="btn btn-danger ">Realizar pedido</button>
