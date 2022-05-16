@@ -23,21 +23,28 @@
     </div>
 </div>
 <!--END CAROUSEL-->
-<div>
+
 
     <!--RIBBON-->
-    <div id="ribbon" class="container-fluid">
-        <div id="birthday" class="container w-50 px-5 rounded-lg">
-            <div class="row aling-items-center">
-                <div class="col-sm p-3">
-                    <img src="~/sources/images/con2.png" class="w-100 rounded mx-auto d-block">
-                </div>
-                <div class="col-sm  p-3 text-light text-center">
-                    <p class="text-warning  text-shadow h3">Hoy es</p>
-                    <h4 class="h2 text-shadow">UN BUEN DIA PARA LEER</h4>
-                </div>
-            </div>
+    <div id="ribbon">
+    <div id="birthday" @*"ribbon"*@ class="row container-fluid my-3 d-flex w-50 mx-auto">
+        
+        
+        <div class=" mb-3 col-md-5 mx-auto">
+           <img src="~/sources/images/con2.png" class="w-100 rounded mx-auto d-block">
         </div>
+        <div class=" mb-3 col-md-5 mx-auto align-self-center">
+            <p class="text-warning  text-shadow h3 text-center">Hoy es</p>
+                    <h4 class="h2 text-shadow text-center">UN BUEN DIA PARA LEER</h4>
+        </div>
+        
+        @*<div id="birthday" class="container w-50 px-5 rounded-lg">
+            <div class="row aling-items-center">
+                
+                
+            </div>
+        </div>*@
+    </div>
     </div>
     <!--SEPARADOR-->
     <div id="separator-ribbon">
@@ -57,7 +64,7 @@
             @foreach (var book in Model.BooksMostBuyers)
             {
                 <div class="col-sm">
-                    <div class="card border-primary book mb-5">
+                    <div class="card border-primary book mb-5 w">
                         <img src="@book.Img" class="card-img-top align-self-center mt-2" alt="...">
                         <div class="card-body chtt">
                             <h4 class="card-title">@book.Title</h4>
