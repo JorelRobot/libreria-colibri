@@ -47,9 +47,9 @@
                         <p>In stock</p>
                         <div class="  pb-2">
                             <p class="text-shadow">Cantidad: </p>
-                            <input type="number" class="intNumber card card">
+                            <input id="Cantidad" type="number" class="intNumber card card" value="1">
                         </div>
-                        <button type="button" onclick="AddToCart(@GetToJson(@Model))" class="btn btn-danger text-center">Agregar al carrito</button>
+                        <button type="button" onclick="AddToCart(@Model.Id, '@Model.Title', '@Model.Img', @Model.Price, GetCantidad())" class="btn btn-danger text-center">Agregar al carrito</button>
                     }
                     else
                     {
@@ -66,15 +66,35 @@
 
 
     <script>
-        function AddToCart(testObject){
-            localStorage.setItem('testObject', JSON.stringify(testObject));
+        
+        function AddToCart(id, title, img, price, cant){
+            let cart = [];
+            let product = {Id: id, Title: title, Img: img, Price:price, Cant:cant };
+
+            if(JSON.parse(localStorage.getItem('carrito')) === null){
+                cart.push(product);    
+            }else{
+                cart = JSON.parse(localStorage.getItem('carrito'));
+                
+                considencia = cart.find(item => item.Id == product.Id);
+                
+                if(considencia){
+                    console.log("existe");
+                    cart.map(data => {
+                    if(data.Id == product.Id){
+                        data.Cant += product.Cant
+                    }
+                    })
+                }
+                else{
+                    cart.push(product);
+                }
+            }
+           localStorage.setItem('carrito',JSON.stringify(cart));
+        }
+
+        function GetCantidad(){
+            return parseInt(document.getElementById("Cantidad").value);
         }
     </script>
 
-
-@{
-    String GetToJson(GetBookDetailsDto model)
-    {
-        return JsonSerializer.Serialize(model);
-    }
-}
