@@ -22,9 +22,8 @@
                     <form action="MyProfile" method="post">
                         <div>
                             <h3 class="fw-light">Datos Personales</h3>
-                            <input asp-for="Id" type="hidden" />
                             <label asp-for="Name"></label>
-                            <input asp-for="Name" type="text" class="form-control col-10" placeholder="Nombre">
+                            <input asp-for="Name" class="form-control col-10" placeholder="Nombre">
                             <br>
                         </div>
                         <div>
@@ -54,13 +53,13 @@
                             <br>
                         </div>
                         <div>
-                            <label asp-for="Country"></label>
-                            <input type="text" class="form-control card col-10" placeholder="Pais" asp-for=Country>
+                            <label asp-for="Name"></label>
+                            <input type="text" class="form-control col-10" placeholder="Pais" asp-for=Country>
                             <br>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-info mr-2 mt-1">Guardar Cambios</button>
-                            <a class="btn btn-info ml-2 mt-1" asp-controller="Home" asp-action="Index">Cancelar</a>
+                            <button type="button" class="btn btn-info ml-2 mt-1">Cancelar</button>
                         </div>
                     </form>
                 </div>
