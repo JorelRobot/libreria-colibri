@@ -29,8 +29,15 @@
     <!--SOLO SI ERES ADMIN PODRAS VER ESTO-->
     @if (User.IsInRole("Administrador"))
     {
-        <a class="btn btn-link nav-link" asp-controller="Access" asp-action="SignupAdmin">Nuevo Epm.</a>
-        <a class="btn btn-link nav-link" asp-controller="Roles" asp-action="Index">Roles</a>
+        <li class="btn btn-link nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
+            <div class="dropdown-menu" style="">
+                <a class="btn btn-link nav-link" asp-controller="User" asp-action="Index">Admon. Emp</a>
+                @*<a class="btn btn-link nav-link" asp-controller="Access" asp-action="SignupAdmin">Nuevo Epm.</a>*@
+                <a class="btn btn-link nav-link" asp-controller="Roles" asp-action="Index">Roles</a>
+            </div>
+        </li>
+        
     <!--fin boton roles-->
     }
 }
