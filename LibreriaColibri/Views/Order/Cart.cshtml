@@ -4,107 +4,211 @@
 @{
 }
 
-
-
-
 <!--Titulo vista-->
-<div class="row pt-2">
+<div class="pt-2">
     <h3 class="text-center pb-2 pt-2 h1 text-shadow">
-      TU CARRITO DE COMPRA
+        TU CARRITO DE COMPRA
     </h3>
-  </div>
-
-
-<!--Tabla de compras-->
-<div class="container pt-2">
-  <div class="row">
-      <div class="col-sm-8">
-
-        <!--Inicia tabla de contenido-->
-        <table class="table table-responsive">
-          <thead>
-            <tr class="table-warning align-middle text-shadow">
-              <th scope="col">Producto</th>
-              <th scope="col">Titulo</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            
-            <tr>
-              <td class="col-2">
-                <img src="~/sources/images/compas.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td class="col-4"> titulo del libro</td>
-              <td class="text-warning align-middle col-2 ">$PRECIO X UNIDAD</td>
-              <td class="col-2"><input type="number" class="intNumber card"></td>
-              <td class="col-2">Total</td>
-            </tr>
-
-            <tr>
-              <td scope="row">
-                <img src="~/sources/images/confesiones.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
-
-
-            <tr >
-              <td scope="row">
-                <img src="~/sources/images/greg.jpg" class="w-50"  alt="..."> 
-              </td>
-              <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
-            
-            <tr>
-              <td scope="row">
-                <img src="~/sources/images/perdidos.jpg" class="w-50"  alt="..."> </td>
-                <td> titulo del libro</td>
-              <td class="text-warning align-middle col-4">$PRECIO X UNIDAD</td>
-              <td><input type="number" class="intNumber card card "></td>
-              <td >Total</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      <!--fin de tabla-->
-
-
-      <!--card total de orden-->
-    <div class=" col-sm-4">
-
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
-          <div class="card-header text-center text-shadow">Total de tu Orden</div>
-          <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto" alt="...">
-          <div class="card-body">
-            <h4 class="card-title"></h4>
-            <p class="card-text text-shadow">Sub Total:</p>
-            <p class="card-text text-shadow">Sub Total de Envío:</p>
-            <p class="card-text text-warning text-shadow">Total: </p>
-            
-            <form  class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
-                
-                    <button class="btn btn-danger ">Realizar pedido</button>
-               
-              
-            
-            </form>
-          </div>
-        </div>
-      </div>
-      <!--fin de card-->
-  </div>
 </div>
 
+<!--Tabla de compras-->
+<div class="mx-3 pt-2">
+    <div class="row">
+        <div class="col-xl-9 col-lg-12">
+
+            <!--Inicia tabla de contenido-->
+            <div class="table-responsive-sm">
+                <table class="table aling-middle">
+                    <thead id="table-head">
+                        <tr class="table-warning align-middle text-shadow text-center fs-4">
+                            <th class="fw-light" scope="col">Producto</th>
+                            <th class="fw-light" scope="col">Titulo</th>
+                            <th class="fw-light" scope="col">Precio</th>
+                            <th class="fw-light" scope="col">Cantidad</th>
+                            <th class="fw-light" scope="col">Total</th>
+                            <th class="fw-light" scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="text-center">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--fin de tabla-->
+        <!--card total de orden-->
+        <div class="col-xl-3 col-lg-12">
+
+            <div class="card border-secondary mb-3 col-sm-6 col-xl-12">
+                <div class="card-header text-center text-shadow">Total de tu Orden</div>
+                <img src="~/sources/images/cart.png" class="card-img-top w-75 mx-auto mt-4" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text text-shadow">Sub Total: <span id="subtotal"></span></p>
+                    <p class="card-text text-shadow">Sub Total de Envío: <span id="totalenvio"></span></p>
+                    <p class="card-text text-warning text-shadow">Total: <span id="total"></span></p>
+
+                    <form class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
+                        <button class="btn btn-danger ">Realizar pedido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--fin de card-->
+    </div>
+</div>
+
+
+
+
+<script>
+
+    /**
+     * Esta funcion renderiza los objetos del carrito guardados
+     * en el LocalStorage
+     */
+    window.onload = function () {
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let table = document.getElementById('table-body');
+
+        for (let i in cart) {
+            table.innerHTML += `
+                <tr id="cartRow${i}" class="align-items-center">
+                    <td class="col-1 align-middle">
+                        <img src="${cart[i]['Img']}" class="w-100" alt="...">
+                    </td>
+                    <td class="col-2 align-middle fs-4 fw-light">${cart[i]['Title']}</td>
+                    <td id="bookPrice${i}" class="col-2 text-warning align-middle fs-4">$${cart[i]['Price']}</td>
+                    <td class="col-4 align-middle">
+                        <div class="row row-cols-md-3">
+                            <div class="col-2">
+                                <button onclick='decrementBook(${i})' class="btn btn-primary">-</button>
+                            </div>
+                            <div class="col-8">
+                                <input id="cantidad${i}" onchange="numberChanged(${i})" type="text" class="form-control text-center" value="${cart[i]['Cant']}">
+                            </div>
+                            <div class="col-2">
+                                <button onclick='incrementBook(${i})' class="btn btn-success">+</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td id="total${i}" class="col-2 align-middle text-center fs-4 fw-light">$${cart[i]['Price'] * cart[i]['Cant']}</td>
+                    <td class="col-1 align-middle">
+                        <button class="btn fs-2" onclick="deleteCartRow(${i})"><i class="bi bi-x-circle"></i></button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
+
+    }
+
+    /**
+     * Este funcion se ejecuta cuando se decrementa la cantidad de los 
+     * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
+     * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
+     * los valores en la vista)
+     */
+    function decrementBook(rowNumber){
+
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let cartItem = cart[rowNumber];
+
+        if (cartItem['Cant'] == 0) return;
+
+        cartItem['Cant']--;
+        localStorage.setItem('carrito', JSON.stringify(cart));
+
+        document.getElementById('cantidad' + rowNumber).value = cartItem['Cant'];
+        document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
+    }
+
+    /**
+     * Este funcion se ejecuta cuando se incrementa la cantidad de los 
+     * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
+     * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
+     * los valores en la vista)
+     */
+    function incrementBook(rowNumber){
+
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let cartItem = cart[rowNumber];
+
+        cartItem['Cant']++;
+        localStorage.setItem('carrito', JSON.stringify(cart));
+
+        document.getElementById('cantidad' + rowNumber).value = cartItem['Cant'];
+        document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+
+        // Se ejecuta la funcion para actualizar el total de la compra
+        updateTotalPrices(cart);
+    }
+
+    function deleteCartRow(rowNumber) {
+        let cartRow = document.getElementById('cartRow' + rowNumber);
+
+        console.log(cartRow);
+
+        cartRow.remove();
+    }
+
+    /**
+     * Esta funcion permite al usuario digitar un numero en el campo
+     * de la cantidad de ejemplares que se desea comprar y actyaliza 
+     * los valores en LocalStorage y en la vista. Esta a su vez, 
+     * valida que los valores en ese campo no sean valores negativos.
+     */
+    function numberChanged(rowNumber) {
+        let cantidad = document.getElementById('cantidad' + rowNumber);
+
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let cartItem = cart[rowNumber];
+
+        if (cantidad.value < 0) {
+            cantidad.value = cartItem['Cant'];
+            return;
+        }
+
+        cartItem['Cant'] = cantidad.value   ;
+        localStorage.setItem('carrito', JSON.stringify(cart));
+
+        document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
+        
+        updateTotalPrices(cart);
+    }
+
+    /**
+     * Esta funcion se encarga de actualizar los valores en la vista
+     * del Subtotal, Total de envio, y el Total que es considerada como
+     * la suma de los dos valores anteriores.
+     */
+    function updateTotalPrices(jsoncart){
+
+        let html_subtotal = document.getElementById('subtotal');
+        let html_totalenvio = document.getElementById('totalenvio');
+        let html_total = document.getElementById('total');
+
+        let subtotal = 0;
+        let totalenvio = 120;
+        let total = 0;
+
+        for (let i in jsoncart) {
+            subtotal += jsoncart[i]['Cant'] * jsoncart[i]['Price'];
+        }
+
+        if (subtotal == 0) totalenvio = 0;
+        total = subtotal + totalenvio;
+
+        html_subtotal.innerHTML = '$' + subtotal;
+        html_totalenvio.innerHTML = '$' + totalenvio;
+        html_total.innerHTML = '$' + total;
+    }
+
+</script>
 
 
 

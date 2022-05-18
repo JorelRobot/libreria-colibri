@@ -9,57 +9,58 @@
                 <hr />
             </div>
 
-            <div class="col col-5 justify-content-center">
+            @*Columna de la imagen*@
+            <div class="col-sm-12 col-md-5 justify-content-center">
                 <div>
                     <img src="~/sources/images/IconoUsuario.png" alt="img-usr" class="w-50">
                 </div>
             </div>
-            <div class="col col-7">
-                <div class="row p-3">
-                    <form asp-action="MyProfile" method="post">
+
+            @*Columna del formulario*@
+            <div class="col-sm-12 col-md-7">
+                <div class="p-3">
+                    <form action="MyProfile" method="post">
                         <div>
-                            <h3 class="card-text">Datos Personales</h3>
-
-                            <input type="hidden" asp-for="Id"/>
-
+                            <h3 class="fw-light">Datos Personales</h3>
+                            <input asp-for="Id" type="hidden" />
                             <label asp-for="Name"></label>
-                            <input type="text" class="form-control card col-10" placeholder="Nombre" asp-for="Name">
+                            <input asp-for="Name" type="text" class="form-control col-10" placeholder="Nombre">
                             <br>
                         </div>
                         <div>
                             <label asp-for="Email"></label>
-                            <input type="email" class="form-control col-10" placeholder="Correo" disabled asp-for="Email">
+                            <input type="email" class="form-control col-10" placeholder="Correo" readonly="" asp-for="Email">
                             <br>
                         </div>
                         <div>
                             <label asp-for="Phone"></label>
-                            <input type="text" class="form-control card col-10" placeholder="Telefono" asp-for="Phone">
+                            <input type="text" class="form-control col-10" placeholder="Telefono" asp-for="Phone">
                             <hr>
                         </div>
                         <div>
                             <h3 class="card-text">Direccion de envio</h3>
                             <label asp-for="Address"></label>
-                            <input type="text" class="form-control card col-10" placeholder="Direccion" asp-for="Address">
+                            <input type="text" class="form-control col-10" placeholder="Direccion" asp-for="Address">
                             <br>
                         </div>
                         <div>
                             <label asp-for="ZipCode"></label>
-                            <input type="text" class="form-control card col-2" placeholder="C.P." asp-for="ZipCode">
+                            <input type="text" class="form-control col-2" placeholder="C.P." asp-for="ZipCode">
                             <br>
                         </div>
                         <div>
                             <label asp-for="City"></label>
-                            <input type="text" class="form-control card col-10" placeholder="Ciudad" asp-for=City>
+                            <input type="text" class="form-control col-10" placeholder="Ciudad" asp-for=City>
                             <br>
                         </div>
                         <div>
-                            <label asp-for="Name"></label>
+                            <label asp-for="Country"></label>
                             <input type="text" class="form-control card col-10" placeholder="Pais" asp-for=Country>
                             <br>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-info mr-2 mt-1">Guardar Cambios</button>
-                            <button type="button" class="btn btn-info ml-2 mt-1">Cancelar</button>
+                            <a class="btn btn-info ml-2 mt-1" asp-controller="Home" asp-action="Index">Cancelar</a>
                         </div>
                     </form>
                 </div>

@@ -1,4 +1,5 @@
-﻿@using LibreriaColibri.Models.ViewModels
+﻿@using LibreriaColibri.Models.Dtos
+@using LibreriaColibri.Models.ViewModels
 @model SearchViewModel
 @{
     ViewData["Title"] = "Book Search Results";
@@ -27,13 +28,43 @@
                                     <p class="fs-5">$@book.Price</p>
                                 </div>
                                 <div class="d-grid">
-                                    <button class="btn btn-success">Agregar</button>
+                                    <button onclick="AddToCart(@book.Id, '@book.Title', '@book.Img', @book.Price, 1)" class="btn btn-success">Agregar</button>
                                     <a class="btn btn-link" asp-controller="Book" asp-action="BookDetails" asp-route-id="@book.Id"> Ver más </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+
+    <script>
+        
+        function AddToCart(id, title, img, price, cant){
+            let cart = [];
+            let product = {Id: id, Title: title, Img: img, Price:price, Cant:cant };
+
+            if(JSON.parse(localStorage.getItem('carrito')) === null){
+                cart.push(product);    
+            }else{
+                cart = JSON.parse(localStorage.getItem('carrito'));
+                
+                considencia = cart.find(item => item.Id == product.Id);
+                
+                if(considencia){
+                    console.log("existe");
+                    cart.map(data => {
+                    if(data.Id == product.Id){
+                        data.Cant += product.Cant
+                    }
+                    })
+                }
+                else{
+                    cart.push(product);
+                }
+            }
+           localStorage.setItem('carrito',JSON.stringify(cart));
+        }
+    </script>
+
 
 @*
             <div class="col">

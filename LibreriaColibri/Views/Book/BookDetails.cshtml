@@ -1,4 +1,5 @@
 ﻿@using LibreriaColibri.Models.Dtos
+@using System.Text.Json
 @model GetBookDetailsDto
 @{
 }
@@ -16,7 +17,7 @@
     
     <!--separacion de columnas -->
 
-    <div class=" container pt-2">
+    <div class=" container pt-2 mb-3">
 
         <div class="row">
             <div class="col-sm-3">
@@ -26,7 +27,10 @@
             </div>
             <div class="col-sm-6">
                 <h4>Sinopsis</h4>
+                <p class="libroDesc ">@Model.Description</p>
+                <h4>Autor</h4>
                 <p> @Model.Author</p>
+                <h4>Editorial</h4>
                 <p> @Model.Ph</p>
 
             </div>
@@ -43,9 +47,9 @@
                         <p>In stock</p>
                         <div class="  pb-2">
                             <p class="text-shadow">Cantidad: </p>
-                            <input type="number" class="intNumber card card">
+                            <input id="Cantidad" type="number" class="intNumber card card" value="1">
                         </div>
-                        <button type="button" class="btn btn-danger text-center">Agregar al carrito</button>
+                        <button type="button" onclick="AddToCart(@Model.Id, '@Model.Title', '@Model.Img', @Model.Price, GetCantidad())" class="btn btn-danger text-center">Agregar al carrito</button>
                     }
                     else
                     {
@@ -59,3 +63,38 @@
 
     </div>
 <!--fin detalles-->
+
+
+    <script>
+        
+        function AddToCart(id, title, img, price, cant){
+            let cart = [];
+            let product = {Id: id, Title: title, Img: img, Price:price, Cant:cant };
+
+            if(JSON.parse(localStorage.getItem('carrito')) === null){
+                cart.push(product);    
+            }else{
+                cart = JSON.parse(localStorage.getItem('carrito'));
+                
+                considencia = cart.find(item => item.Id == product.Id);
+                
+                if(considencia){
+                    console.log("existe");
+                    cart.map(data => {
+                    if(data.Id == product.Id){
+                        data.Cant += product.Cant
+                    }
+                    })
+                }
+                else{
+                    cart.push(product);
+                }
+            }
+           localStorage.setItem('carrito',JSON.stringify(cart));
+        }
+
+        function GetCantidad(){
+            return parseInt(document.getElementById("Cantidad").value);
+        }
+    </script>
+
