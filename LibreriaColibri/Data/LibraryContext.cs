@@ -37,6 +37,13 @@ namespace LibreriaColibri.Data
         public DbSet<GetBooksDto> GetBooks { get; set; } = null!;
         public DbSet<GetBookDetailsDto> GetBookDetails { get; set; } = null!;
 
+        //modificacion  Fer y Monse
+        public DbSet<GetOrderBooksDto> GetOrderBooks { get; set; } = null!;
+        public DbSet<GetOrderDto> GetOrderDto { get; set; } = null;
+
+        public DbSet<GetTOrderBooksDto> GetTOrderBooks { get; set; } = null;
+        
+        //termina modificacion 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
@@ -255,6 +262,11 @@ namespace LibreriaColibri.Data
             });
 
             modelBuilder.Entity<GetBookDetailsDto>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            modelBuilder.Entity<GetOrderBooksDto>(entity =>
             {
                 entity.HasNoKey();
             });
