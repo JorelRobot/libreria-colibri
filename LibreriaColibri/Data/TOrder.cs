@@ -8,7 +8,7 @@ namespace LibreriaColibri.Data
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public int IdStatus { get; set; }
-        public int IdUser { get; set; }
+        public string IdUser { get; set; }
 
         public virtual TStatus IdStatusNavigation { get; set; } = null!;
     }
