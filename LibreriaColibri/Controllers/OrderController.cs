@@ -91,5 +91,50 @@ namespace LibreriaColibri.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> SingleOrder(string id)
+        {
+            ProfileViewModel model = new ProfileViewModel();
+            var idUsr = _userManager.GetUserId(User);
+            if (idUsr == null)
+            {
+                NotFound();
+            }
+            var currentUser = await _context.Usuario.FindAsync(idUsr);
+            if (currentUser == null)
+            {
+                NotFound();
+            }
+            
+            ViewBag.Usr = currentUser;
+
+            var orders = _context.GetOrderDto.FromSqlRaw($"sp_SelectOrdersByOrder '{id}'").ToList();
+            //var books = _context.GetOrderBooks.FromSqlRaw($"sp_SelectBooksFromOrder '{}'").ToList();
+            //var orderBooks = _context.GetTOrderBooks.FromSqlRaw($"sp_SelectOrderBook").ToList();
+            GetOrderBooksDto[] arreglo;
+
+            foreach (var order in orders)
+            {
+
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var books = _context.GetOrderBooks.FromSqlRaw($"sp_SelectBooksFromOrder '{order.Id}'").ToList();
+                    arreglo = new GetOrderBooksDto[books.Count()];
+                    for (int i = 0; i < books.Count(); i++)
+                    {
+                        arreglo[i] = books.ElementAt(i);
+                    }
+                    order.BooksInOrders = arreglo;
+
+                }
+            }
+            return View(orders);
+        }
+
+
     }
 }

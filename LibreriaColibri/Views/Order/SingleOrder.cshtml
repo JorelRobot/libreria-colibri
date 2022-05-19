@@ -1,117 +1,127 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using LibreriaColibri.Models.Dtos
+@model IEnumerable<GetOrderDto>
+
 @{
+    string[] Estado(string estado)
+    {
+        string[] b = new string[3];
+        if (estado == "Pendiente")
+        {
+            string[] a=new string[]{ "bg-success","bg-danger","bg-danger","bg-danger" };
+            b = a;
+        }
+        else if (estado == "Empaquetado")
+        {
+            string[] a=new string[]{ "bg-success","bg-success","bg-danger","bg-danger" };
+            b = a;
+        }
+        else if (estado == "Enviado")
+        {
+            string[] a=new string[]{ "bg-success","bg-success","bg-success","bg-danger" };
+            b = a;
+        }
+        else if (estado == "Entregado")
+        {
+            string[] a=new string[]{ "bg-success","bg-success","bg-success","bg-success" };
+            b = a;
+        }
+        return b;
+    }
 }
 
-<div class="row mb-3 align-items-center">
-    <div class="col-8">
-        <p class="display-6">Numero de orden: xxxxxxxxxxxxxxx</p>
+@{
+    decimal subtotalLibro = 0, subtotal = 0, costoEnvio = 100, total = 0;
+    void TotalXLibro(int cantidad, decimal precio)
+    {
+        subtotalLibro = cantidad * precio;
+        subtotal+=subtotalLibro;
+    }
+    void Total()
+    {
+        total = subtotal + costoEnvio;
+    }
+}
+
+@foreach (var order in Model)
+{
+    <div class="row mb-3 align-items-center">
+        <div class="col-8">
+            <p class="display-6">Numero de orden: @order.Id</p>
+        </div>
+        <div class="col-4">
+            <p class="fs-5">Fecha de orden: @order.Date.ToShortDateString()</p>
+        </div>
     </div>
-    <div class="col-4">
-        <p class="fs-5">Fecha de orden: xx/xx/xxxx</p>
-    </div>
-</div>
 
-<div class="row">
+    <div class="row">
 
-    <!-- Seccion de lista de productos -->
+        <!-- Seccion de lista de productos -->
 
-    <div class="col-8">
+        <div class="col-8">
 
-        <div class="card">
-            <div class="card-body">
-                <!-- Primera fila del listado del libros -->
-                <div class="row mb-2 align-items-center">
-                    <!-- Columna de la imagen del libro -->
-                    <div class="col-3">
-                        <img src="https://infolibros.org/wp-content/uploads/2020/10/1.-Aura-Autor-Carlos-Fuentes.jpg?ezimgfmt=rs:300x498/rscb33/ng:webp/ngcb33"
-                             class="w-50" alt="">
-                    </div>
-                    <!-- Columna del nombre y autor del libro -->
-                    <div class="col-3">
-                        <p class="fs-3 fw-light">Aura</p>
-                        <p class="fst-italic">Autor: Carlos fuentes</p>
-                    </div>
-                    <!-- Cantidad de ejemplares del libro en el pedido -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">1 x $350.00</p>
-                    </div>
-                    <!-- Costo individual del libro -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">$350.00</p>
-                    </div>
-                </div>
-
-                <!-- Segunda fila del listado del libros -->
-                <div class="row mb-2 align-items-center">
-                    <!-- Columna de la imagen del libro -->
-                    <div class="col-3">
-                        <img src="https://m.media-amazon.com/images/I/51Nm0CdXMAL.jpg" class="w-50" alt="">
-                    </div>
-                    <!-- Columna del nombre y autor del libro -->
-                    <div class="col-3">
-                        <p class="fs-3 fw-light">Cantar de ciegos</p>
-                        <p class="fst-italic">Autor: Carlos fuentes</p>
-                    </div>
-                    <!-- Cantidad de ejemplares del libro en el pedido -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">1 x $390.00</p>
-                    </div>
-                    <!-- Costo individual del libro -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">$390.00</p>
-                    </div>
-                </div>
-
-                <!-- Tercer fila del listado del libros -->
-                <div class="row mb-2 align-items-center">
-                    <!-- Columna de la imagen del libro -->
-                    <div class="col-3">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/41MjjzQtBDL._SX303_BO1,204,203,200_.jpg" class="w-50" alt="">
-                    </div>
-                    <!-- Columna del nombre y autor del libro -->
-                    <div class="col-3">
-                        <p class="fs-3 fw-light">Rayela</p>
-                        <p class="fst-italic">Autor: Julio Cortazar</p>
-                    </div>
-                    <!-- Cantidad de ejemplares del libro en el pedido -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">1 x $390.00</p>
-                    </div>
-                    <!-- Costo individual del libro -->
-                    <div class="col-3 text-center">
-                        <p class="fs-4 fw-light">$390.00</p>
-                    </div>
-                </div>
-                <hr>
-
-                <!-- Seccion de los precios -->
-
-                <div class="row mt-4">
-                    <div class="col-6"></div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-6 text-center">
-                                <div class="row">
-                                    <p>Subtotal</p>
+            <div class="card">
+                <div class="card-body">
+                
+                        @foreach (var book in order.BooksInOrders)
+                        {
+                            <!-- Primera fila del listado del libros -->
+                            <div class="row mb-2 align-items-center">
+                                <!-- Columna de la imagen del libro -->
+                                <div class="col-3">
+                                    <img src="@book.Img" class="w-50" alt="">
                                 </div>
-                                <div class="row">
-                                    <p>Costo deEnvio</p>
+                                <!-- Columna del nombre y autor del libro -->
+                                <div class="col-3">
+                                    <p class="fs-3 fw-light">@book.Title</p>
+                                    @*<p class="fst-italic">Autor: #########</p>*@
                                 </div>
-                                <div class="row mt-3">
-                                    <p class="display-6">Total</p>
+                                <!-- Cantidad de ejemplares del libro en el pedido -->
+                                <div class="col-3 text-center">
+                                    <p class="fs-4 fw-light">@book.Quantity x $@book.Price</p>
+                                </div>
+                                <!-- Costo individual del libro -->
+                                <div class="col-3 text-center">
+                                    
+                                    <p class="fs-4 fw-light">
+                                        @{TotalXLibro(book.Quantity,book.Price);}
+                                        $@subtotalLibro
+                                    </p>
                                 </div>
                             </div>
-                            <div class="col-6 text-center">
-                                <div class="row">
-                                    <p>$1,130.00</p>
+                        }
+                
+
+                    <!-- Seccion de los precios -->
+
+                    <div class="row mt-4">
+                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <div class="row">
+                                        <p>Subtotal</p>
+                                    </div>
+                                    <div class="row">
+                                        <p>Costo deEnvio</p>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <p class="display-6">Total</p>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <p>$70.00</p>
-                                </div>
-                                <div class="row mt-3">
-                                    <p class="display-6">$1,200.00</p>
+                                <div class="col-6 text-center">
+                                    <div class="row">
+                                        <p>$@subtotal</p>
+                                    </div>
+                                    <div class="row">
+                                        <p>$@costoEnvio</p>
+                                    </div>
+                                    <div class="row mt-3">
+                                        
+                                        <p class="display-6">
+                                            @{Total();}
+                                            @total
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -120,51 +130,56 @@
             </div>
         </div>
 
-        <!-- Seccion del status del envio -->
+        <div class="col-4">
 
-        <div class="card my-3">
-            <div class="card-body">
-                <p class="fs-4">Detalles del envio</p>
+            <!-- Seccion de detalles del envio y cliente -->
+            <div class="card">
+                <div class="card-body fw-light">
+                    <p>
+                        <span class="fs-3">Nombre: @ViewBag.Usr.Name</span><br>
+                        <span class="fs-5">Email: @ViewBag.Usr.Email</span><br>
+                        <span class="fs-6">Telefono: @ViewBag.Usr.PhoneNumber</span><br>
+                        <hr>
 
-                <div class="row mt-3">
-                    <div class="col-3 text-center">
-                        <div class="bg-success card rounded-circle mx-auto" style="width: 3em; height: 3em;"></div>
-                        <p>Orden tomada <br> xx/xx/xxxx</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <div class="bg-primary card rounded-circle mx-auto" style="width: 3em; height: 3em;"></div>
-                        <p>Orden empaquetada <br> xx/xx/xxxx</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <div class="bg-warning card rounded-circle mx-auto" style="width: 3em; height: 3em;"></div>
-                        <p>Orden en camino <br> xx/xx/xxxx</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <div class="bg-info card rounded-circle mx-auto" style="width: 3em; height: 3em;"></div>
-                        <p>Orden entregada <br> xx/xx/xxxx</p>
+                        <span>Direccion: @ViewBag.Usr.Address</span><br>
+                        <span>C.P. @ViewBag.Usr.ZipCode</span><br>
+                        <span>Ciudad, Pais: @ViewBag.Usr.City, @ViewBag.Usr.Country</span><br>
+
+                    </p>
+                </div>
+            </div>
+            <div class="card my-2">
+                <div class="card-body">
+                    <p class="fs-4">Detalles del envio</p>
+
+                    <div class="row mt-3">
+                        @*Modificacion*@
+                        @{
+                            //string[] estado = { "Pendiente", "Empaquetado", "Enviado", "Entregado" };
+                            var a = Estado(order.Status);
+                            if (a[0] != "")
+                            {
+                                <div class="col-3 text-center">
+                                        <div class="@a[0] card rounded-circle mx-auto" style="width: 2rem; height: 2rem;"></div>
+                                        <p>Orden Pendiente</p>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <div class="@a[1] card rounded-circle mx-auto" style="width: 2rem; height: 2rem;"></div>
+                                        <p>Orden Empaquetada</p>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <div class="@a[2] card rounded-circle mx-auto" style="width: 2rem; height: 2rem;"></div>
+                                        <p>Orden Enviada</p>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <div class="@a[3] card rounded-circle mx-auto" style="width: 2rem; height: 2rem;"></div>
+                                        <p>Orden Entregada</p>
+                                    </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col-4">
-
-        <!-- Seccion de detalles del envio y cliente -->
-        <div class="card">
-            <div class="card-body fw-light">
-                <p>
-                    <span class="fs-3">Joel Rueda Robles</span><br>
-                    <span class="fs-5">joel@ejemplo.com</span><br>
-                    <span class="fs-6">3322553355</span><br>
-                    <hr>
-
-                    <span>Av. Lopez Cotilla #2692</span><br>
-                    <span>Col. Centro Historico C.P. 22550</span><br>
-                    <span>Guadalajara, Jalisco, Mexico</span><br>
-
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+}
