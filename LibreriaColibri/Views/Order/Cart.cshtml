@@ -6,7 +6,7 @@
 
 <!--Titulo vista-->
 <div class="pt-2">
-    <h3 class="text-center pb-2 pt-2 h1 text-shadow">
+    <h3 class="text-center pb-2 pt-2 h1 text-shadow fs-1 fw-light">
         TU CARRITO DE COMPRA
     </h3>
 </div>
@@ -47,7 +47,7 @@
                     <p class="card-text fs-5 fw-light text-shadow">Costo de Envío: <span id="totalenvio"></span></p>
                     <p class="card-text fs-2 text-warning text-shadow">Total: <span id="total"></span></p>
 
-                    <form class="row justify-content-center" asp-controller="Order" asp-action="Payment" method="get">
+                    <form class="row justify-content-center mt-4" asp-controller="Order" asp-action="Payment" method="get">
                         <button class="btn btn-danger ">Realizar pedido</button>
                     </form>
                 </div>
@@ -57,6 +57,24 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar del carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-4 fw-light">
+                ¿Esta seguro de eliminar <span id="bookToEliminate" class="fw-bolder fst-italic"></span> de tu carrito de compras?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="confirmToDelete" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -93,7 +111,7 @@
                     </td>
                     <td id="total${i}" class="col-2 align-middle text-center fs-4 fw-light">$${cart[i]['Price'] * cart[i]['Cant']}</td>
                     <td class="col-1 align-middle">
-                        <button class="btn fs-2" onclick="deleteCartRow(${i})"><i class="bi bi-x-circle"></i></button>
+                        <button class="btn fs-2" onclick="showBookToDeleteInModal(${i})" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-circle"></i></button>
                     </td>
                 </tr>
             `;
@@ -105,7 +123,7 @@
     }
 
     /**
-     * Este funcion se ejecuta cuando se decrementa la cantidad de los 
+     * Este funcion se ejecuta cuando se decrementa la cantidad de los
      * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
      * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
      * los valores en la vista)
@@ -128,7 +146,7 @@
     }
 
     /**
-     * Este funcion se ejecuta cuando se incrementa la cantidad de los 
+     * Este funcion se ejecuta cuando se incrementa la cantidad de los
      * ejemplares de un libro a comprar. Esta a su vez actualiza los valores
      * en LocalStorage, y renderiza los nuevos valores en la vista (actualiza
      * los valores en la vista)
@@ -148,18 +166,40 @@
         updateTotalPrices(cart);
     }
 
-    function deleteCartRow(rowNumber) {
+    function deleteCartBook(rowNumber) {
+        // Esta seccion cierra el modal al hacer click en aceptar el delete
+        let modalToDelete = document.getElementById('deleteModal');
+        let modal = bootstrap.Modal.getInstance(modalToDelete);
+        modal.hide();
+        
+
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let cartItemToDelete = cart[rowNumber];
+
+        cart.splice(rowNumber, 1);
+        localStorage.setItem('carrito', JSON.stringify(cart));
+
+        // Se elimina el libro de la lista (En la vista)
         let cartRow = document.getElementById('cartRow' + rowNumber);
-
-        console.log(cartRow);
-
         cartRow.remove();
+    }
+
+    function showBookToDeleteInModal(rowNumber) {
+        //let cartRow = document.getElementById('cartRow' + rowNumber);
+        let bookToDeleteLabel = document.getElementById('bookToEliminate');
+        let buttonToDelete = document.getElementById('confirmToDelete');
+
+        let cart = JSON.parse(localStorage.getItem('carrito'));
+        let cartItemToDelete = cart[rowNumber];
+
+        bookToDeleteLabel.innerHTML = '"' + cartItemToDelete['Title'] + '"';
+        buttonToDelete.setAttribute('onclick', `deleteCartBook(${rowNumber})`);
     }
 
     /**
      * Esta funcion permite al usuario digitar un numero en el campo
-     * de la cantidad de ejemplares que se desea comprar y actyaliza 
-     * los valores en LocalStorage y en la vista. Esta a su vez, 
+     * de la cantidad de ejemplares que se desea comprar y actyaliza
+     * los valores en LocalStorage y en la vista. Esta a su vez,
      * valida que los valores en ese campo no sean valores negativos.
      */
     function numberChanged(rowNumber) {
@@ -177,7 +217,7 @@
         localStorage.setItem('carrito', JSON.stringify(cart));
 
         document.getElementById('total' + rowNumber).innerHTML = "$" + (cartItem['Cant'] * cartItem['Price']);
-        
+
         updateTotalPrices(cart);
     }
 
