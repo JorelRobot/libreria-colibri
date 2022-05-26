@@ -28,7 +28,7 @@
     <div class="col">
         @foreach (var order in Model)
         {
-            <!-- Empieza el diseño de un pedido -->
+                <!-- Empieza el diseño de un pedido -->
             <div class="card mt-3">
                 <div class="card-header">
                     <div class="row fw-normal fs-5">
@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="mt-3 text-end ">
-                        <a href="" class="btn btn-warning">Mostrar detalles</a>
+                        <a asp-controller="Order" asp-action="SingleOrder" asp-route-id="@order.Id" class="btn btn-warning">Mostrar detalles</a>
                     </div>
                 <!--</div>-->
 
