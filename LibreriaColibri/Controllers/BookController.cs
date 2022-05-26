@@ -30,7 +30,7 @@ namespace LibreriaColibri.Controllers
             else
             {
                 model.SearchText = search;
-                model.SearchBooks = _context.GetBooks.FromSqlRaw($"sp_SelectBookByTitle {search}").ToList();
+                model.SearchBooks = _context.GetBooks.FromSqlRaw($"sp_SelectBookByTitle '{search}'").ToList();
             }
             return View(model);
         }
